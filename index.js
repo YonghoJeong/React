@@ -1,6 +1,6 @@
 const express = require('express')
 const app = express()
-const port = 3000
+const port = 5000
 const {User} = require("./models/User");
 const bodyParser = require('body-parser');
 const config = require('./config/key');
@@ -39,10 +39,10 @@ return res.status(200).json({
 })
 })
 
-app.post('/login',(req,res) =>{
+app.post('/login',(req,res) => {
 //요청된 이메일을 데이터베이스에서 있는지 찾는다.
 
-User.findOne({email:req.body.email},(err,user)=>{
+User.findOne({email:req.body.email},(err,user) => {
 
 if(!user){
 return res.json({
@@ -53,7 +53,7 @@ message : "제공된 이메일에 해당하는 유저가 없습니다."
 
 //요청된 이메일이 데이터베이스에 있다면 비빌번호가 같은지 확인
 
-user.comparePassword(req.body.password,(err,isMatch) => {
+user.comparePassword(req.body.password,(err, isMatch) => {
 
 if(!isMatch)
 
@@ -67,9 +67,9 @@ if(err) return res.status(400).send(err);
 
 //토큰을 저장한다. 어디에? 쿠키, 로컬스토리지
 
-res.cookie("x_auth",user.token )
+res.cookie("x_auth", user.token )
 .status(200)
-.json({loginSuccess:true,userId : user._id})
+.json({loginSuccess:true, userId : user._id})
 })
 })
 })
