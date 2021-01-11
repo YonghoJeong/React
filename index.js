@@ -19,7 +19,7 @@ mongoose.connect('mongodb+srv://chocoba05:Jeongyh0503!@cluster0.qqss5.mongodb.ne
 .catch(err => console.log(err))
 
 app.get('/', (req, res) => {
-  res.send('Hello World! 안녕!!!! 나야나')
+  res.send('Hello World! 안녕!!!! 나야f')
 })
 
 app.post('/register', (req,res) => {
